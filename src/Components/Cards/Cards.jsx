@@ -1,11 +1,11 @@
-// Cards.jsx
+
 import React, { useState } from 'react';
 
-const Cards = ({ product, selectedProducts , setSelectedProducts }) => {
+const Cards = ({ product, carts, setCarts }) => {
     const [isSelected, setIsSelected ] = useState(false)
 const handleAddCart = () => {
     setIsSelected(true)
-    setSelectedProducts(...selectedProducts, product)
+ setCarts([...carts,product])
 }
 
     

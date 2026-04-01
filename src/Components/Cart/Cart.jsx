@@ -1,44 +1,34 @@
-import { Trash, User } from 'lucide';
+import { Trash } from 'lucide';
 import React from 'react';
 
-const Cart = ({ selectedProducts =[], setSelectedProducts  }) => {
-  
-  const handleSelectedCard = (product) => {
-    const filteredCard = selectedProducts.filter((item) => item.name !== product.name);
-    setSelectedProducts(filteredCard);
-  };
-
+const Cart = ({carts}) => {
+  const totalPrice = carts.reduce((sum, item) => sum + item.price, 0);
   return (
-    <div>
+    <div className='p-10 shadow w-10/12 mx-auto rounded-2xl'>
+      <h2>Your Cart</h2>
+
+{
+  carts.map( item => <div key={item.id} className='p-4 shadow-sm'>
+    <div className="">
       <div className="">
-        
-        {selectedProducts.length === 0 ? (
-          <div className="flex justify-center items-center flex-col h-100">
-            <h2 className="font-bold text-4xl">No Selected Product</h2>
-            <p>Go to Selected Product</p>
-          </div>
-        ) :  selectedProducts.map((product , ind ) => {
-            return (
-               <div key={ind} className=' flex items-center gap-6 justify-between p-5 rounded-2xl border '>
-                            <div>
-                            {/* <img src= alt="" className='h-[70px] w-[5-px]' /> */}
+    <div className="img"></div>
+    <div className="flex flex-col">
+    <h2 className="font-semibold">{item.name}</h2>
+<p className=''>$  {item.price}</p>
+    </div>
 
-                            <div className='flex mt-4 justify-start items-center gap-2'>
-                             <User></User>   <h2 className='font-bold'>{product.name}</h2>
-                            <p className='ml-10 font-semibold'>{product.price}</p>
-                            
-                            </div>
-                            </div>
-                            <button className='btn text-red-400' onClick={() => handleSelectedCard(product)}>
-                                <Trash/>
-                            </button>
-                        </div>
-            )
-
-        }
-          
-        )}
       </div>
+
+    </div>
+  </div>
+    )
+}
+    <div className="flex justify-between mt-2 w-9/12 mx-auto">
+      <div className="font-semibold ">Total:</div>
+      <div className="">$ {totalPrice}</div>
+    </div>
+
+
     </div>
   );
 };

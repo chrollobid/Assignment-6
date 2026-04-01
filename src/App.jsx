@@ -9,6 +9,7 @@ import GetStarted from './Components/GetStarted/GetStarted'
 import Pricing from './Components/Pricing/Pricing'
 import WorkFlow from './Components/WorkFlow/WorkFlow'
 import Footer from './Components/Footer/Footer'
+import Products from './Components/Products/Products'
 
 
 const getProducts = async () => {
@@ -19,18 +20,35 @@ const getProducts = async () => {
 function App() {
   const productPromise = getProducts()
  
-  
-
+  const [activeTab, setActiveTab] = useState('product')
+const [ carts, setCarts] = useState([])
+console.log(carts)
   return (
     <>
    <Navbar/>
    <Banner/>
    <Stats/>
-   <Suspense fallback= {<span className="loading loading-dots loading-xl"></span>}>
 
-   <DigitalTools productPromise={productPromise}/>
+{/* name of each tab group should be unique */}
+<div className="tabs tabs-box justify-center bg-white pt-10">
+  <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label="Products" onClick={() => setActiveTab('product')} defaultChecked/>
+  <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label="Cart" onClick={() => setActiveTab('cart')} />
+  
+</div>
+{
+  activeTab === 'product' && <Suspense fallback= {<span className="loading loading-dots loading-xl"></span>}>
+
+   <Products carts={carts} setCarts={setCarts} productPromise={productPromise}/>
    </Suspense>
-   <Cart></Cart>
+}
+{
+  activeTab === 'cart' && 
+   <Suspense fallback= {<span className="loading loading-dots loading-xl "></span>}>
+   <Cart carts={carts}></Cart>
+
+   </Suspense>
+}
+   
   <GetStarted/>
   <Pricing/>
   <WorkFlow/>
