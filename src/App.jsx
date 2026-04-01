@@ -29,21 +29,17 @@ console.log(carts)
    <Stats/>
 
 
-<div className="tabs tabs-box justify-center bg-white pt-10">
-  <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label="Products" onClick={() => setActiveTab('product')} defaultChecked/>
-  <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label={`Cart (${carts.length})`} onClick={() => setActiveTab('cart')} />
-  
-</div>
+
 {
   activeTab === 'product' && <Suspense fallback= {<span className="loading loading-dots loading-xl"></span>}>
 
-   <Products carts={carts} setCarts={setCarts} productPromise={productPromise}/>
+   <Products carts={carts} setCarts={setCarts} activeTab={activeTab} setActiveTab={setActiveTab}  productPromise={productPromise}/>
    </Suspense>
 }
 {
   activeTab === 'cart' && 
    <Suspense fallback= {<span className="loading loading-dots loading-xl "></span>}>
-   <Cart carts={carts } setCarts={setCarts}></Cart>
+   <Cart carts={carts } setCarts={setCarts} activeTab={activeTab} setActiveTab={setActiveTab} ></Cart>
 
    </Suspense>
 }

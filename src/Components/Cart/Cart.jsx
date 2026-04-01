@@ -2,7 +2,7 @@ import { Trash } from 'lucide';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const Cart = ({carts, setCarts}) => {
+const Cart = ({carts, setCarts, activeTab, setActiveTab }) => {
   const handlePayment = () => {
     setCarts([])
     toast.success('Payment Successful')
@@ -14,8 +14,15 @@ setCarts(filteredArray)
   toast.success('Item Deleted')
   }
   return (
-    <div className='p-10 shadow w-9/12 mx-auto rounded-2xl'>
-      <h2 className='font-bold text-4xl'>Your Cart :</h2>
+    
+    <div className='p-10 shadow w-9/12 mx-auto rounded-2xl space-y-2'>
+      <div className="tabs tabs-box justify-center bg-white pt-10">
+        <input type="radio" name="my_tabs_1"     className={`tab rounded-full font-bold w-40 ${activeTab === 'product' ? "bg-[linear-gradient(to_bottom,#4f39f6_0%,#9514fa_100%)] text-white" : ""}`}
+ aria-label="Products" onClick={() => setActiveTab('product')} />
+        <input type="radio" name="my_tabs_1"     className={`tab rounded-full font-bold w-40 ${activeTab === 'cart' ? "bg-[linear-gradient(to_bottom,#4f39f6_0%,#9514fa_100%)] text-white" : ""}`}
+ aria-label={`Cart (${carts.length})`} onClick={() => setActiveTab('cart')} defaultChecked />
+      </div>
+      <h2 className='font-bold text-4xl mb-4'>Your Cart :</h2>
 
       {carts.length === 0 ? (
         <p className='font-bold text-center text-2xl'>Your Cart is Empty</p>
