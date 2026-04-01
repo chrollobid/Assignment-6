@@ -3,7 +3,6 @@ import './App.css'
 import Navbar from './Components/Navbar/Navbar'
 import Banner from './Components/Banner/Banner'
 import Stats from './Components/Stats/Stats'
-import DigitalTools from './Components/DigitalTools/DigitalTools'
 import Cart from './Components/Cart/Cart'
 import GetStarted from './Components/GetStarted/GetStarted'
 import Pricing from './Components/Pricing/Pricing'
@@ -25,14 +24,14 @@ const [ carts, setCarts] = useState([])
 console.log(carts)
   return (
     <>
-   <Navbar/>
+   <Navbar carts={carts}/>
    <Banner/>
    <Stats/>
 
-{/* name of each tab group should be unique */}
+
 <div className="tabs tabs-box justify-center bg-white pt-10">
   <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label="Products" onClick={() => setActiveTab('product')} defaultChecked/>
-  <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label="Cart" onClick={() => setActiveTab('cart')} />
+  <input type="radio" name="my_tabs_1" className="tab rounded-full font-bold w-40" aria-label={`Cart (${carts.length})`} onClick={() => setActiveTab('cart')} />
   
 </div>
 {
@@ -44,7 +43,7 @@ console.log(carts)
 {
   activeTab === 'cart' && 
    <Suspense fallback= {<span className="loading loading-dots loading-xl "></span>}>
-   <Cart carts={carts}></Cart>
+   <Cart carts={carts } setCarts={setCarts}></Cart>
 
    </Suspense>
 }

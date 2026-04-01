@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({carts}) => {
     return (
       <div>
 
@@ -31,11 +31,11 @@ const Navbar = () => {
    
     <div className="hidden lg:flex flex-1 justify-center">
       <ul className="flex items-center gap-5">
-        <li><a href="" className="hover:text-primary transition-colors">Products</a></li>
-        <li><a href="" className="hover:text-primary transition-colors">Features</a></li>
-        <li><a href="" className="hover:text-primary transition-colors">Pricing</a></li>
-        <li><a href="" className="hover:text-primary transition-colors">Testimonials</a></li>
-        <li><a href="" className="hover:text-primary transition-colors">FAQ</a></li>
+        <li><a href="" className="hover:text-primary   transition-colors">Products</a></li>
+        <li><a href="" className="hover:text-primary  transition-colors">Features</a></li>
+        <li><a href="" className="hover:text-primary  transition-colors">Pricing</a></li>
+        <li><a href="" className="hover:text-primary  transition-colors">Testimonials</a></li>
+        <li><a href="" className="hover:text-primary  transition-colors">FAQ</a></li>
       </ul>
     </div>
 
@@ -43,18 +43,18 @@ const Navbar = () => {
     <div className="flex-1 flex justify-end items-center gap-2">
       <div className="dropdown dropdown-end">
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-          <div className="indicator">
+          <div className="indicator transition delay-15 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <span className="badge badge-sm indicator-item">8</span>
+            <span className="badge badge-sm bg-red-500 text-white rounded-full  indicator-item"> {carts.length}</span>
           </div>
         </div>
        
       </div>
       
      
-      <button className="btn btn-sm md:btn-md rounded-2xl btn-ghost">Login</button>
+      <button className="btn btn-sm md:btn-md rounded-2xl btn-ghost transition delay-15 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">Login</button>
       
       <button className="btn transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 btn-sm md:btn-md rounded-3xl bg-[linear-gradient(to_bottom,#4f39f6_0%,#9514fa_100%)] text-white border-none">
         Get Started
